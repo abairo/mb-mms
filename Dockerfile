@@ -27,13 +27,6 @@ RUN apk --no-cache add \
   && pip install "poetry==$POETRY_VERSION" 
 
 
-# Create a group and user
-RUN addgroup -S appgroup && adduser -S docker -G appgroup
-
-# Tell docker that all future commands should run as the appuser user
-USER docker
-
-# Copy only requirements, to cache them in docker layer:
 COPY pyproject.toml poetry.lock /app/
 WORKDIR /app
 RUN poetry install $(test "$DJANGO_ENV" == production && echo "--no-dev") --no-interaction --no-ansi
