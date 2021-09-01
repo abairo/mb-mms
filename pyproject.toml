@@ -8,6 +8,7 @@ authors = ["Anderson Bairo <ander_slash@yahoo.com.br>"]
 python = "^3.9"
 Django = "^3.2.6"
 python-decouple = "^3.4"
+psycopg2 = "^2.9.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
