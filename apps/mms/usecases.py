@@ -16,8 +16,10 @@ class FilterMMS:
 
     def _get_queryset(self, pair, mms_range, ts_from, ts_to):
         return self._repository.annotate(mms=F(MMS_RANGE[mms_range])) \
-               .values('mms', 'pair') \
-               .filter(pair=pair).all()
+               .values('mms', 'timestamp') \
+               .filter(pair=pair) \
+               .filter(timestamp__gte=ts_from, timestamp__lte=ts_to) \
+               .all()
 
     def __call__(self, pair, mms_range, ts_from, ts_to):
         return self._get_queryset(pair, mms_range, ts_from, ts_to)
