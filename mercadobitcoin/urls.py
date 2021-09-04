@@ -20,5 +20,5 @@ from apps.mms.views import MMSView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('articles/<str:pair>/', MMSView.as_view({'get': 'list'}))
+    path('<str:pair>/mms', MMSView.as_view({'get': 'list'}))
 ]
