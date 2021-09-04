@@ -8,7 +8,7 @@ down:
 	docker-compose -f docker-compose.yaml down 
 
 volumes-prune:
-	docker volume prune -f
+	docker-compose -f docker-compose.yaml down --volumes
 
 migrate:
 	docker-compose -f docker-compose.yaml run --rm --entrypoint="" web python manage.py migrate
