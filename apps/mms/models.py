@@ -3,7 +3,7 @@ from django.db import models
 
 class MMS(models.Model):
     pair = models.CharField(max_length=6)
-    timestamp = models.DateTimeField()
+    timestamp = models.IntegerField()
     mms_20 = models.DecimalField(max_digits=10, decimal_places=2)
     mms_50 = models.DecimalField(max_digits=10, decimal_places=2)
     mms_200 = models.DecimalField(max_digits=10, decimal_places=2)

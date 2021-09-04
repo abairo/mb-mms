@@ -4,7 +4,7 @@ from rest_framework import response, status
 from .models import MMS
 from .serializers import MMSSerializer
 from .usecases import FilterMMS
-from .converters import timestamp_to_date
+from .utils.date import yesterday_ts
 
 
 class MMSView(viewsets.ReadOnlyModelViewSet):
@@ -13,8 +13,8 @@ class MMSView(viewsets.ReadOnlyModelViewSet):
     permission_classes = (AllowAny,)
 
     def list(self, request, *args, **kwargs):
-        ts_from = timestamp_to_date(int(self.request.GET.get('from')))
-        ts_to = timestamp_to_date(int(self.request.GET.get('to')))
+        ts_from = int(self.request.GET.get('from'))
+        ts_to = int(self.request.GET.get('to', 0)) or yesterday_ts()
         mms_range = int(self.request.GET.get('range'))
         pair = self.kwargs.get('pair')
 

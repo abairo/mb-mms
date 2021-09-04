@@ -7,4 +7,4 @@ class MMSSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MMS
-        fields = ('pair', 'mms')
+        fields = ('timestamp', 'mms')
