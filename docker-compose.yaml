@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  rabbitmq:
+    image: rabbitmq:3.9.5-management-alpine
+    ports:
+      - 15672:15672
+      - 5672:5672
+
   db:
     image: postgres:13.4-alpine
     env_file:

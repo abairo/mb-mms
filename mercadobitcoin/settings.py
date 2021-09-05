@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_celery_beat',
     'apps.mms'
 ]
 
@@ -132,3 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # URL_API
 CANDLE_MB_URL = config('CANDLE_MB_URL')
+
+# CELERY CONFIGURATION
+CELERY_BROKER_URL = config('CELERY_BROKER_URL')
+CELERY_TIMEZONE = config('CELERY_TIMEZONE')
