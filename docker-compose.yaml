@@ -33,5 +33,27 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  celery_worker:
+    build:
+      context: .
+    command: ["celery", "-A", "mercadobitcoin", "worker", "-l", "INFO"]
+    env_file:
+      .env
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+  celery_beat:
+    build:
+      context: .
+    command: ["celery", "-A", "mercadobitcoin", "beat", "-l", "INFO"]
+    env_file:
+      .env
+    volumes:
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
 volumes:
   db-data:
