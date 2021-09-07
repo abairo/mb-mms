@@ -138,6 +138,9 @@ CANDLE_MB_URL = config('CANDLE_MB_URL')
 CELERY_BROKER_URL = config('CELERY_BROKER_URL')
 CELERY_TIMEZONE = config('CELERY_TIMEZONE')
 
+# CRYPTO PAIRS
+PAIRS = config('PAIRS', cast=lambda v: [s.strip() for s in v.split(',')])
+
 # ADMINS
 ADMINS = (
     ('anderson', 'anderson.bairo@yahoo.com.br'),
