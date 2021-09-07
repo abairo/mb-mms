@@ -5,6 +5,9 @@ from .models import MMS
 from .serializers import MMSSerializer
 from .usecases import FilterMMS
 from .utils.date import yesterday_ts
+import logging
+
+logger = logging.getLogger('MMS')
 
 
 class MMSView(viewsets.ReadOnlyModelViewSet):
@@ -17,6 +20,7 @@ class MMSView(viewsets.ReadOnlyModelViewSet):
         ts_to = int(self.request.GET.get('to', 0)) or yesterday_ts()
         mms_range = int(self.request.GET.get('range'))
         pair = self.kwargs.get('pair')
+        logger.info(f'Filtrando mms ({pair}, {mms_range}, {ts_from}, {ts_to})')
 
         usecase = FilterMMS(repository=self.get_queryset())
 
