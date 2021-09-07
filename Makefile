@@ -30,3 +30,6 @@ bash:
 
 initial-import:
 	docker-compose -f docker-compose.yaml run --rm --entrypoint="" web python manage.py initial_import
+
+createsuperuser:
+	docker-compose -f docker-compose.yaml run --rm --entrypoint="" web python manage.py createsuperuser
