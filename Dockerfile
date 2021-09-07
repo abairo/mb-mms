@@ -13,7 +13,10 @@ ENV DJANGO_ENV=${DJANGO_ENV} \
   PIP_DEFAULT_TIMEOUT=100 \
   # poetry:
   POETRY_VERSION=1.1.8 \
-  POETRY_VIRTUALENVS_CREATE=false
+  POETRY_VIRTUALENVS_CREATE=false \
+  TZ=America/Sao_Paulo
+
+RUN date
 
 # System deps:
 RUN apk --no-cache add \
@@ -25,7 +28,6 @@ RUN apk --no-cache add \
     postgresql-dev \
     bash \
   && pip install "poetry==$POETRY_VERSION" 
-
 
 COPY pyproject.toml poetry.lock /app/
 WORKDIR /app
