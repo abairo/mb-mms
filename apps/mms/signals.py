@@ -6,8 +6,10 @@ from .utils.date import timestamp_to_datetime
 
 
 @receiver(pre_save, sender=MMS)
-def create_mms(sender, instance, *args, **kwargs):
-    if not instance.pk:
+def create_mms(sender, *args, **kwargs):
+    instance = kwargs.get('instance')
+
+    if instance and not instance.pk:
         instance.date = timestamp_to_datetime(instance.timestamp)
 
 
