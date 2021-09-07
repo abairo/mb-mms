@@ -33,3 +33,6 @@ initial-import:
 
 createsuperuser:
 	docker-compose -f docker-compose.yaml run --rm --entrypoint="" web python manage.py createsuperuser
+
+pytest:
+	docker-compose -f docker-compose.yaml run --rm --entrypoint="" web pytest -s

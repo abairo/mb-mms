@@ -10,7 +10,7 @@ from rest_framework.utils.serializer_helpers import ReturnList
 class TestMMSView(TestCase):
 
     fixtures = [
-        'fixtures/mms.json',
+        'fixtures/mms.json'
     ]
 
     @pytest.mark.django_db
