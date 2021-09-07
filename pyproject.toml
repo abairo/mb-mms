@@ -16,6 +16,7 @@ django-celery-beat = "^2.2.1"
 redis = "^3.5.3"
 pytest-cov = "^2.12.1"
 pytest-django = "^4.4.0"
+daphne = "^3.0.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
