@@ -6,6 +6,8 @@ from .serializers import MMSSerializer
 from .usecases import FilterMMS
 from .utils.date import yesterday_ts
 import logging
+from rest_framework import serializers
+
 
 logger = logging.getLogger('MMS')
 

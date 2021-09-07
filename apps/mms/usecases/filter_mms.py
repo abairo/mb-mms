@@ -1,5 +1,7 @@
-
 from django.db.models import F
+from rest_framework import serializers
+from django.conf import settings
+from apps.mms.utils.date import today, subtract_days, datetime_to_timestamp
 
 
 MMS_RANGE = {
@@ -8,11 +10,20 @@ MMS_RANGE = {
     200: 'mms_200'
 }
 
+MIN_DAYS_QUERY = settings.MIN_DAYS_QUERY
+
 
 class FilterMMS:
 
     def __init__(self, repository):
         self._repository = repository
+
+    def _valid_min_date_query(self, ts_from):
+        dt_today = today()
+        min_dt = subtract_days(dt_today, MIN_DAYS_QUERY)
+
+        if ts_from < datetime_to_timestamp(min_dt):
+            raise serializers.ValidationError(f'parâmetro from inválido, não pode ser inferior a {MIN_DAYS_QUERY} dias.')
 
     def _get_queryset(self, pair, mms_range, ts_from, ts_to):
         return self._repository.annotate(mms=F(MMS_RANGE[mms_range])) \
@@ -22,4 +33,5 @@ class FilterMMS:
                .all()
 
     def __call__(self, pair, mms_range, ts_from, ts_to):
+        self._valid_min_date_query(ts_from)
         return self._get_queryset(pair, mms_range, ts_from, ts_to)
