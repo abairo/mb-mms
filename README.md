@@ -48,6 +48,29 @@ make pytest
 Ou
 docker-compose -f docker-compose.yaml run --rm --entrypoint="" web pytest -s
 ```
+saída:
+```bash
+======================================== test session starts ========================================
+platform linux -- Python 3.9.7, pytest-6.2.5, py-1.10.0, pluggy-1.0.0
+django: settings: mercadobitcoin.settings (from ini)
+rootdir: /app, configfile: pytest.ini
+plugins: anyio-3.3.0, cov-2.12.1, django-4.4.0
+collected 7 items
+
+apps/mms/tests/test_missing_dates.py ..
+apps/mms/tests/test_signal_create_mms.py .
+apps/mms/tests/test_view.py ..
+apps/mms/tests/test_utils.py .
+apps/mms/tests/test_utils_date.py .
+
+----------- coverage: platform linux, python 3.9.7-final-0 -----------
+Coverage HTML written to dir htmlcov
+
+Required test coverage of 60% reached. Total coverage: 71.57%
+
+========================================= 7 passed in 5.06s =========================================
+
+```
 # Documentação da API
 ex:
 GET http://0.0.0.0:8000/{PAR}/mms?to={TIMESTAMP_TO}&from=TIMESTAMP_FROM&range={RANGE_INT}
@@ -86,6 +109,7 @@ retorno para requisições com range_from fora do limite de 365 dias. Bad reques
 - Foram incluídos elementos como Use Cases, como defendido por Martin Fowler, para organizar os requisitos da aplicação MMS.
 - Foi criado um handler customizado para manipular as exceções conhecidas da API.
 - Foram escritos testes de Ponta a Ponta e unitários.
+- Configurei os testes para ter uma cobertura mínima de 60%.
 - Muitas funções ficaram dentro do app mms, pois assim é possível compartilhar apps django ou criar LIB's caso seja necessário.
 
 ### Script de import
