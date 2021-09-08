@@ -24,6 +24,7 @@ EMAIL_PORT=587
 EMAIL_USE_TLS=True
 PAIRS=BRLBTC,BRLETH
 MIN_DAYS_QUERY=365
+ADMINS="(('nomeadmin', 'admin@email_admin.com'),)"
 ```
 Se possível dê preferência para o uso do Makefile, ele abstrai vários comandos longos (verificar arquivo Makefile)
 ```bash

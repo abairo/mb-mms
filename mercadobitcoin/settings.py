@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from decouple import config
+from ast import literal_eval as make_tuple
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -148,9 +149,7 @@ CELERY_TIMEZONE = config('CELERY_TIMEZONE')
 PAIRS = config('PAIRS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # ADMINS
-ADMINS = (
-    ('anderson', 'anderson.bairo@yahoo.com.br'),
-)
+ADMINS = config('ADMINS', cast=make_tuple)
 
 # EMAIL CONFIGURATION
 EMAIL_HOST = config('EMAIL_HOST')
