@@ -26,3 +26,16 @@ class TestMMSView(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsInstance(response.data, ReturnList)
         self.assertIsInstance(response.data[0], OrderedDict)
+
+    @pytest.mark.django_db
+    def test_filtra_mms_api_400_gt_365_days(self):
+        client = APIClient()
+        pair = 'BRLBTC'
+        mms_range = 200
+        ts_from = 1599361199
+        ts_to = 1630897199
+
+        response = client.get(f'/{pair}/mms?range={mms_range}&from={ts_from}&to={ts_to}')
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIsNotNone(response.data.get('error'))

@@ -23,7 +23,7 @@ class FilterMMS:
         min_dt = subtract_days(dt_today, MIN_DAYS_QUERY)
 
         if ts_from < datetime_to_timestamp(min_dt):
-            raise serializers.ValidationError(f'parâmetro from inválido, não pode ser inferior a {MIN_DAYS_QUERY} dias.')
+            raise serializers.ValidationError({'error': f'parâmetro from inválido, não pode ser inferior a {MIN_DAYS_QUERY} dias.'})
 
     def _get_queryset(self, pair, mms_range, ts_from, ts_to):
         return self._repository.annotate(mms=F(MMS_RANGE[mms_range])) \
