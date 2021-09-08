@@ -41,7 +41,12 @@ make initial-import
 Ou
 docker-compose -f docker-compose.yaml run --rm --entrypoint="" web python manage.py initial_import
 ```
-
+Para rodar os testes, utilizar o comando:
+```
+make pytest
+Ou
+docker-compose -f docker-compose.yaml run --rm --entrypoint="" web pytest -s
+```
 # Documentação da API
 ex:
 GET http://0.0.0.0:8000/{PAR}/mms?to={TIMESTAMP_TO}&from=TIMESTAMP_FROM&range={RANGE_INT}
