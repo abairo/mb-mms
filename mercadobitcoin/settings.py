@@ -76,7 +76,8 @@ WSGI_APPLICATION = 'mercadobitcoin.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
-    )
+    ),
+    'EXCEPTION_HANDLER': 'mercadobitcoin.handlers.exceptions_handler.custom_exception_handler'
 }
 
 # Database
