@@ -26,7 +26,7 @@ class FilterMMS:
         if ts_from < datetime_to_timestamp(min_dt):
             raise RangeOutOfLimit()
 
-    def _get_queryset(self, pair, mms_range, ts_from, ts_to):
+    def _filter_mms(self, pair, mms_range, ts_from, ts_to):
         return self._repository.annotate(mms=F(MMS_RANGE[mms_range])) \
                .values('mms', 'timestamp') \
                .filter(pair=pair) \
@@ -35,4 +35,4 @@ class FilterMMS:
 
     def __call__(self, pair, mms_range, ts_from, ts_to):
         self._valid_min_date_query(ts_from)
-        return self._get_queryset(pair, mms_range, ts_from, ts_to)
+        return self._filter_mms(pair, mms_range, ts_from, ts_to)
