@@ -124,4 +124,4 @@ Foram criadas tasks com os seguintes agendamentos:
 - Caso a task que faz o import incremental falhe por algum motivo, será realizadas N tentativas a cada 10 minutos.
 
 
-#### Obs. para utilizar o admin do django com o CSS devidamente carregado, é necessário rodar com runserver, não foi configurado um servidor de arquivos estáticos par aser utilizado com o ASGI Server Daphne (Não era requisito do teste).
+#### Obs. para utilizar o admin do django com o CSS devidamente carregado, é necessário rodar com runserver, não foi configurado um servidor de arquivos estáticos para ser utilizado com o ASGI Server Daphne (Não era requisito do teste).
